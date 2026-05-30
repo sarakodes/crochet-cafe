@@ -6,6 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
+/* ------------------------------
+   THEME
+------------------------------ */
 :root {
   --pink: #f7c9d4;
   --pink-soft: #fbe4ea;
@@ -22,9 +25,28 @@ body {
   font-family: var(--font);
   background: linear-gradient(135deg, var(--pink-soft), var(--beige));
   color: var(--text);
+  overflow-x: hidden;
 }
 
-/* NAVBAR */
+/* ------------------------------
+   FLOATING YARN BALLS
+------------------------------ */
+.yarn {
+  position: fixed;
+  width: 60px;
+  opacity: 0.35;
+  animation: floatYarn 18s infinite linear;
+  z-index: -1;
+}
+
+@keyframes floatYarn {
+  0% { transform: translateY(110vh) rotate(0deg); }
+  100% { transform: translateY(-20vh) rotate(360deg); }
+}
+
+/* ------------------------------
+   NAVBAR
+------------------------------ */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -58,14 +80,17 @@ body {
   color: var(--brown);
 }
 
-/* HERO */
+/* ------------------------------
+   HERO
+------------------------------ */
 .hero {
-  padding: 60px 26px;
+  padding: 80px 26px;
   text-align: center;
+  animation: fadeIn 1.2s ease;
 }
 
 .hero h2 {
-  font-size: 40px;
+  font-size: 42px;
   font-weight: 800;
   margin-bottom: 10px;
 }
@@ -94,7 +119,9 @@ body {
   color: white;
 }
 
-/* FEATURED */
+/* ------------------------------
+   FEATURED PATTERNS
+------------------------------ */
 .section {
   padding: 40px 26px;
 }
@@ -112,16 +139,18 @@ body {
 }
 
 .card {
-  background: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.85);
   border-radius: var(--radius);
   padding: 16px;
   box-shadow: var(--shadow);
-  transition: 0.2s;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
+  animation: fadeInUp 0.8s ease;
 }
 
 .card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.18);
 }
 
 .card img {
@@ -139,17 +168,37 @@ body {
   opacity: 0.7;
 }
 
-/* FOOTER */
+/* ------------------------------
+   FOOTER
+------------------------------ */
 .footer {
   text-align: center;
   padding: 20px;
   opacity: 0.7;
   font-size: 14px;
 }
+
+/* ------------------------------
+   ANIMATIONS
+------------------------------ */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 </style>
 </head>
 
 <body>
+
+<!-- FLOATING YARN BALLS -->
+<img src="https://i.imgur.com/8QfQJYB.jpeg" class="yarn" style="left:10%; animation-delay:0s;">
+<img src="https://i.imgur.com/8QfQJYB.jpeg" class="yarn" style="left:40%; animation-delay:4s;">
+<img src="https://i.imgur.com/8QfQJYB.jpeg" class="yarn" style="left:70%; animation-delay:8s;">
 
 <!-- NAVBAR -->
 <div class="navbar">
@@ -160,15 +209,14 @@ body {
     <a href="#">Patterns</a>
     <a href="#">Shop</a>
     <a href="#">Contact</a>
-    <!-- Login/Profile button will be inserted by JS -->
   </div>
 </div>
 
 <!-- HERO -->
 <div class="hero">
-  <h2>Warm, Cozy, Handmade Magic ✨</h2>
+  <h2 id="heroText"></h2>
   <p>Discover adorable crochet patterns, soft pastel designs, and beginner‑friendly guides to bring your creations to life.</p>
-  <button>Browse Patterns 🧵</button>
+  <button id="scrollBtn">Browse Patterns 🧵</button>
 </div>
 
 <!-- FEATURED -->
@@ -202,7 +250,9 @@ body {
 </div>
 
 <script>
-// Insert Login or Profile button
+/* ------------------------------
+   LOGIN / PROFILE BUTTON
+------------------------------ */
 const nav = document.getElementById("navLinks");
 
 if (localStorage.getItem("crochetLoggedIn")) {
@@ -210,6 +260,44 @@ if (localStorage.getItem("crochetLoggedIn")) {
 } else {
   nav.innerHTML += `<a href="login.html">Login / Signup 💗</a>`;
 }
+
+/* ------------------------------
+   TYPING EFFECT FOR HERO TEXT
+------------------------------ */
+const text = "Warm, Cozy, Handmade Magic ✨";
+let i = 0;
+
+function typeEffect() {
+  if (i < text.length) {
+    document.getElementById("heroText").textContent += text.charAt(i);
+    i++;
+    setTimeout(typeEffect, 70);
+  }
+}
+typeEffect();
+
+/* ------------------------------
+   SMOOTH SCROLL BUTTON
+------------------------------ */
+document.getElementById("scrollBtn").onclick = () => {
+  window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
+};
+
+/* ------------------------------
+   CARD TILT EFFECT
+------------------------------ */
+document.querySelectorAll(".card").forEach(card => {
+  card.addEventListener("mousemove", e => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width/2;
+    const y = e.clientY - rect.top - rect.height/2;
+    card.style.transform = `rotateX(${y/20}deg) rotateY(${x/20}deg) scale(1.03)`;
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
+  });
+});
 </script>
 
 </body>
