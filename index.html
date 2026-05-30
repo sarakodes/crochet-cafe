@@ -29,19 +29,35 @@ body {
 }
 
 /* ------------------------------
-   FLOATING YARN BALLS
+   FLOATING HEARTS
 ------------------------------ */
-.yarn {
+#floatingHearts {
   position: fixed;
-  width: 60px;
-  opacity: 0.35;
-  animation: floatYarn 18s infinite linear;
+  inset: 0;
+  overflow: hidden;
   z-index: -1;
 }
 
-@keyframes floatYarn {
-  0% { transform: translateY(110vh) rotate(0deg); }
-  100% { transform: translateY(-20vh) rotate(360deg); }
+.heart {
+  position: absolute;
+  font-size: 28px;
+  opacity: 0.6;
+  animation: floatUp 8s linear infinite;
+  filter: blur(0.3px);
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(110vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-20vh) rotate(360deg);
+    opacity: 0;
+  }
 }
 
 /* ------------------------------
@@ -195,10 +211,9 @@ body {
 
 <body>
 
-<!-- FLOATING YARN BALLS -->
-<img src="https://i.imgur.com/8QfQJYB.jpeg" class="yarn" style="left:10%; animation-delay:0s;">
-<img src="https://i.imgur.com/8QfQJYB.jpeg" class="yarn" style="left:40%; animation-delay:4s;">
-<img src="https://i.imgur.com/8QfQJYB.jpeg" class="yarn" style="left:70%; animation-delay:8s;">
+<!-- FLOATING HEARTS -->
+<div id="floatingHearts"></div>
+
 
 <!-- NAVBAR -->
 <div class="navbar">
@@ -298,6 +313,40 @@ document.querySelectorAll(".card").forEach(card => {
     card.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
   });
 });
+
+/* ------------------------------
+   FLOATING HEART GENERATOR
+------------------------------ */
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.textContent = "💗";
+
+  // random horizontal position
+  heart.style.left = Math.random() * 100 + "vw";
+
+  // random size
+  const size = 20 + Math.random() * 20;
+  heart.style.fontSize = size + "px";
+
+  // random animation duration
+  const duration = 6 + Math.random() * 4;
+  heart.style.animationDuration = duration + "s";
+
+  // random slight rotation
+  heart.style.transform = `rotate(${Math.random() * 40 - 20}deg)`;
+
+  document.getElementById("floatingHearts").appendChild(heart);
+
+  // remove after animation
+  setTimeout(() => {
+    heart.remove();
+  }, duration * 1000);
+}
+
+// create a new heart every 400ms
+setInterval(createHeart, 400);
+
 </script>
 
 </body>
