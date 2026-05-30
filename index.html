@@ -170,7 +170,7 @@ body {
 }
 
 .card {
-  background: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.9);
   border-radius: var(--radius);
   padding: 16px;
   box-shadow: var(--shadow);
@@ -178,6 +178,7 @@ body {
   cursor: pointer;
   animation: fadeInUp 0.8s ease;
   position: relative;
+  overflow: visible;
 }
 
 .card:hover {
@@ -224,127 +225,225 @@ body {
 }
 
 /* ------------------------------
-   CSS MOCHI MASCOT
+   CHIBI PLUSHIE MOCHI
 ------------------------------ */
 .mochi {
   position: relative;
-  width: 120px;
+  width: 110px;
   height: 110px;
   pointer-events: none;
 }
 
-/* Body */
-.mochi::before {
-  content: "";
+/* Soft shadow under Mochi */
+.mochi-shadow {
   position: absolute;
-  width: 120px;
-  height: 90px;
-  background: #f5e9d8;
-  border-radius: 60px;
-  bottom: 0;
-  left: 0;
-  box-shadow: inset 0 -6px 0 #e8d8c4;
+  width: 70px;
+  height: 18px;
+  background: rgba(0,0,0,0.08);
+  border-radius: 50%;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-/* Head */
-.mochi::after {
-  content: "";
+/* Head (big) */
+.mochi-head {
   position: absolute;
-  width: 100px;
-  height: 90px;
-  background: #f5e9d8;
-  border-radius: 50px;
-  top: -20px;
-  left: 10px;
-  box-shadow: inset 0 -6px 0 #e8d8c4;
+  width: 80px;
+  height: 70px;
+  background: var(--beige);
+  border-radius: 45px;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: inset 0 -4px 0 #e8d8c4;
+}
+
+/* Body (small bean) */
+.mochi-body {
+  position: absolute;
+  width: 70px;
+  height: 45px;
+  background: var(--beige);
+  border-radius: 40px;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: inset 0 -4px 0 #e8d8c4;
 }
 
 /* Ears */
-.mochi .ear {
+.mochi-ear {
   position: absolute;
-  width: 28px;
-  height: 28px;
-  background: #f5e9d8;
+  width: 22px;
+  height: 22px;
+  background: var(--beige);
   border-radius: 6px;
-  top: -10px;
+  top: -6px;
 }
-.mochi .ear.left { left: 18px; transform: rotate(-20deg); }
-.mochi .ear.right { right: 18px; transform: rotate(20deg); }
+.mochi-ear.left { left: 12px; transform: rotate(-18deg); }
+.mochi-ear.right { right: 12px; transform: rotate(18deg); }
+
+/* Inner ear (pink) */
+.mochi-ear-inner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: #f7c9d4;
+  border-radius: 6px;
+  top: 4px;
+  left: 4px;
+}
 
 /* Eyes */
-.mochi .eye {
+.mochi-eye {
   position: absolute;
   width: 10px;
   height: 10px;
   background: #5a4a42;
   border-radius: 50%;
-  top: 25px;
+  top: 28px;
 }
-.mochi .eye.left { left: 35px; }
-.mochi .eye.right { right: 35px; }
+.mochi-eye.left { left: 26px; }
+.mochi-eye.right { right: 26px; }
+
+/* Blink animation (subtle) */
+@keyframes mochiBlink {
+  0%, 90%, 100% { height: 10px; border-radius: 50%; }
+  92%, 98% { height: 2px; border-radius: 2px; }
+}
+.mochi-blink .mochi-eye {
+  animation: mochiBlink 4.5s infinite;
+}
 
 /* Nose */
-.mochi .nose {
+.mochi-nose {
   position: absolute;
-  width: 12px;
-  height: 8px;
+  width: 10px;
+  height: 7px;
   background: #f2a7b8;
   border-radius: 50%;
-  top: 40px;
+  top: 38px;
   left: 50%;
   transform: translateX(-50%);
 }
 
 /* Blush */
-.mochi .blush {
+.mochi-blush {
   position: absolute;
-  width: 18px;
-  height: 10px;
+  width: 16px;
+  height: 9px;
   background: #f7c9d4;
   border-radius: 50%;
-  top: 45px;
-  opacity: 0.6;
+  top: 42px;
+  opacity: 0.7;
 }
-.mochi .blush.left { left: 18px; }
-.mochi .blush.right { right: 18px; }
+.mochi-blush.left { left: 14px; }
+.mochi-blush.right { right: 14px; }
+
+/* Paws (front) */
+.mochi-paw {
+  position: absolute;
+  width: 16px;
+  height: 14px;
+  background: var(--beige);
+  border-radius: 10px;
+  bottom: 18px;
+}
+.mochi-paw.left { left: 26px; }
+.mochi-paw.right { right: 26px; }
+
+/* Paw pads (pink) */
+.mochi-paw::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 8px;
+  background: #f7c9d4;
+  border-radius: 10px;
+  bottom: 2px;
+  left: 3px;
+}
 
 /* Tail */
-.mochi .tail {
+.mochi-tail {
   position: absolute;
-  width: 40px;
-  height: 20px;
-  background: #f5e9d8;
+  width: 30px;
+  height: 18px;
+  background: var(--beige);
   border-radius: 20px;
-  right: -20px;
-  bottom: 10px;
-  transform: rotate(20deg);
+  right: 4px;
+  bottom: 18px;
+  transform: rotate(25deg);
 }
 
 /* ------------------------------
    MOCHI POSES
 ------------------------------ */
-.mochi-sleep .eye {
+
+/* Sitting (default) */
+.mochi-sit {}
+
+/* Sleeping */
+.mochi-sleep .mochi-head {
+  transform: translateX(-50%) rotate(-15deg);
+}
+.mochi-sleep .mochi-eye {
   width: 14px;
-  height: 4px;
-  border-radius: 4px;
-  top: 35px;
+  height: 3px;
+  border-radius: 3px;
+  top: 34px;
+}
+.mochi-sleep .mochi-tail {
+  bottom: 12px;
+  right: 0;
+  transform: rotate(0deg);
 }
 
-.mochi-coffee::after {
-  content: "☕";
+/* Coffee */
+.mochi-coffee .mochi-cup {
   position: absolute;
-  font-size: 28px;
-  bottom: 10px;
+  width: 26px;
+  height: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  bottom: 16px;
   left: 50%;
   transform: translateX(-50%);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
 }
+.mochi-coffee .mochi-cup::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 3px solid #f7c9d4;
+  border-radius: 50%;
+  right: -8px;
+  top: 4px;
+}
+.mochi-coffee .mochi-paw.left { left: 30px; bottom: 20px; }
+.mochi-coffee .mochi-paw.right { right: 30px; bottom: 20px; }
 
+/* Peeking (only head + paws visible) */
+.mochi-peek .mochi-body,
+.mochi-peek .mochi-tail,
+.mochi-peek .mochi-shadow {
+  display: none;
+}
 .mochi-peek {
-  transform: scale(0.7);
+  height: 70px;
+}
+.mochi-peek .mochi-head {
+  top: 10px;
+}
+.mochi-peek .mochi-paw {
+  bottom: -4px;
 }
 
+/* Belly (lying on back) */
 .mochi-belly {
-  transform: rotate(90deg) scale(0.8);
+  transform: rotate(90deg) scale(0.9);
 }
 
 /* ------------------------------
@@ -352,18 +451,17 @@ body {
 ------------------------------ */
 .mochi-on-card {
   position: absolute;
-  top: -20px;
-  right: -10px;
-  transform: scale(0.7);
+  top: -30px;
+  right: -8px;
+  transform: scale(0.75);
 }
 
 .mochi-above-title {
   position: absolute;
-  top: -60px;
+  top: -70px;
   left: 50%;
-  transform: translateX(-50%) scale(0.8);
+  transform: translateX(-50%) scale(0.9);
 }
-
 </style>
 </head>
 
@@ -388,15 +486,27 @@ body {
 <div class="hero">
   <h2 id="heroText"></h2>
 
-  <div class="mochi mochi-coffee mochi-above-title">
-    <div class="ear left"></div>
-    <div class="ear right"></div>
-    <div class="eye left"></div>
-    <div class="eye right"></div>
-    <div class="nose"></div>
-    <div class="blush left"></div>
-    <div class="blush right"></div>
-    <div class="tail"></div>
+  <!-- Mochi above hero title (coffee pose + blink) -->
+  <div class="mochi mochi-sit mochi-coffee mochi-blink mochi-above-title">
+    <div class="mochi-shadow"></div>
+    <div class="mochi-head">
+      <div class="mochi-ear left">
+        <div class="mochi-ear-inner"></div>
+      </div>
+      <div class="mochi-ear right">
+        <div class="mochi-ear-inner"></div>
+      </div>
+      <div class="mochi-eye left"></div>
+      <div class="mochi-eye right"></div>
+      <div class="mochi-nose"></div>
+      <div class="mochi-blush left"></div>
+      <div class="mochi-blush right"></div>
+    </div>
+    <div class="mochi-body"></div>
+    <div class="mochi-paw left"></div>
+    <div class="mochi-paw right"></div>
+    <div class="mochi-tail"></div>
+    <div class="mochi-cup"></div>
   </div>
 
   <p>Discover adorable crochet patterns, soft pastel designs, and beginner‑friendly guides to bring your creations to life.</p>
@@ -409,50 +519,83 @@ body {
 
   <div class="pattern-grid">
 
+    <!-- Card 1: Sleeping Mochi on card -->
     <div class="card">
-      <div class="mochi mochi-sleep mochi-on-card">
-        <div class="ear left"></div>
-        <div class="ear right"></div>
-        <div class="eye left"></div>
-        <div class="eye right"></div>
-        <div class="nose"></div>
-        <div class="blush left"></div>
-        <div class="blush right"></div>
-        <div class="tail"></div>
+      <div class="mochi mochi-sleep mochi-blink mochi-on-card">
+        <div class="mochi-shadow"></div>
+        <div class="mochi-head">
+          <div class="mochi-ear left">
+            <div class="mochi-ear-inner"></div>
+          </div>
+          <div class="mochi-ear right">
+            <div class="mochi-ear-inner"></div>
+          </div>
+          <div class="mochi-eye left"></div>
+          <div class="mochi-eye right"></div>
+          <div class="mochi-nose"></div>
+          <div class="mochi-blush left"></div>
+          <div class="mochi-blush right"></div>
+        </div>
+        <div class="mochi-body"></div>
+        <div class="mochi-paw left"></div>
+        <div class="mochi-paw right"></div>
+        <div class="mochi-tail"></div>
       </div>
-      <img src="https://i.imgur.com/8QfQJYB.jpeg">
+
+      <img src="https://i.imgur.com/8QfQJYB.jpeg" alt="Fluffy Bunny">
       <h4>Fluffy Bunny</h4>
       <p>Soft, cute, and perfect for beginners.</p>
     </div>
 
+    <!-- Card 2: Peeking Mochi -->
     <div class="card">
-      <div class="mochi mochi-peek mochi-on-card">
-        <div class="ear left"></div>
-        <div class="ear right"></div>
-        <div class="eye left"></div>
-        <div class="eye right"></div>
-        <div class="nose"></div>
-        <div class="blush left"></div>
-        <div class="blush right"></div>
-        <div class="tail"></div>
+      <div class="mochi mochi-peek mochi-blink mochi-on-card">
+        <div class="mochi-head">
+          <div class="mochi-ear left">
+            <div class="mochi-ear-inner"></div>
+          </div>
+          <div class="mochi-ear right">
+            <div class="mochi-ear-inner"></div>
+          </div>
+          <div class="mochi-eye left"></div>
+          <div class="mochi-eye right"></div>
+          <div class="mochi-nose"></div>
+          <div class="mochi-blush left"></div>
+          <div class="mochi-blush right"></div>
+        </div>
+        <div class="mochi-paw left"></div>
+        <div class="mochi-paw right"></div>
       </div>
-      <img src="https://i.imgur.com/0ZQZQZQ.jpeg">
+
+      <img src="https://i.imgur.com/0ZQZQZQ.jpeg" alt="Pastel Tote Bag">
       <h4>Pastel Tote Bag</h4>
       <p>Aesthetic and practical everyday bag.</p>
     </div>
 
+    <!-- Card 3: Belly Mochi -->
     <div class="card">
-      <div class="mochi mochi-belly mochi-on-card">
-        <div class="ear left"></div>
-        <div class="ear right"></div>
-        <div class="eye left"></div>
-        <div class="eye right"></div>
-        <div class="nose"></div>
-        <div class="blush left"></div>
-        <div class="blush right"></div>
-        <div class="tail"></div>
+      <div class="mochi mochi-belly mochi-blink mochi-on-card">
+        <div class="mochi-shadow"></div>
+        <div class="mochi-head">
+          <div class="mochi-ear left">
+            <div class="mochi-ear-inner"></div>
+          </div>
+          <div class="mochi-ear right">
+            <div class="mochi-ear-inner"></div>
+          </div>
+          <div class="mochi-eye left"></div>
+          <div class="mochi-eye right"></div>
+          <div class="mochi-nose"></div>
+          <div class="mochi-blush left"></div>
+          <div class="mochi-blush right"></div>
+        </div>
+        <div class="mochi-body"></div>
+        <div class="mochi-paw left"></div>
+        <div class="mochi-paw right"></div>
+        <div class="mochi-tail"></div>
       </div>
-      <img src="https://i.imgur.com/3Y3Y3Y3.jpeg">
+
+      <img src="https://i.imgur.com/3Y3Y3Y3.jpeg" alt="Mini Flower Set">
       <h4>Mini Flower Set</h4>
       <p>Quick, fun, and great for gifts.</p>
     </div>
