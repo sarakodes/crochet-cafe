@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cozy Crochet Corner 🧶✨</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+:root {
+  --pink: #f7c9d4;
+  --pink-soft: #fbe4ea;
+  --beige: #f5e9d8;
+  --brown: #8b6f5a;
+  --text: #5a4a42;
+  --radius: 18px;
+  --shadow: 0 10px 30px rgba(0,0,0,0.12);
+  --font: "Poppins", system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: linear-gradient(135deg, var(--pink-soft), var(--beige));
+  color: var(--text);
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 26px;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar h1 {
+  font-size: 22px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 15px;
+  margin-left: 16px;
+  transition: 0.2s;
+}
+
+.navbar a:hover {
+  color: var(--brown);
+}
+
+/* HERO */
+.hero {
+  padding: 60px 26px;
+  text-align: center;
+}
+
+.hero h2 {
+  font-size: 40px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 0.8;
+}
+
+.hero button {
+  margin-top: 20px;
+  background: var(--pink);
+  border: none;
+  padding: 14px 26px;
+  border-radius: var(--radius);
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: 0.2s;
+}
+
+.hero button:hover {
+  background: var(--brown);
+  color: white;
+}
+
+/* FEATURED PATTERNS */
+.section {
+  padding: 40px 26px;
+}
+
+.section h3 {
+  font-size: 26px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.pattern-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: rgba(255,255,255,0.8);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card img {
+  width: 100%;
+  border-radius: var(--radius);
+}
+
+.card h4 {
+  margin: 10px 0 4px;
+  font-size: 18px;
+}
+
+.card p {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* NEWSLETTER */
+.newsletter {
+  background: rgba(255,255,255,0.8);
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  max-width: 600px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.newsletter input {
+  width: 80%;
+  padding: 12px;
+  border-radius: var(--radius);
+  border: 1px solid #ddd;
+  margin-top: 10px;
+}
+
+.newsletter button {
+  margin-top: 14px;
+  background: var(--pink);
+  border: none;
+  padding: 12px 20px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 15px;
+  box-shadow: var(--shadow);
+}
+
+.newsletter button:hover {
+  background: var(--brown);
+  color: white;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 20px;
+  opacity: 0.7;
+  font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <h1>🧶 Cozy Crochet Corner</h1>
+  <div>
+    <a href="#">Home</a>
+    <a href="#">Patterns</a>
+    <a href="#">Shop</a>
+    <a href="#">Contact</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <h2>Warm, Cozy, Handmade Magic ✨</h2>
+  <p>Discover adorable crochet patterns, soft pastel designs, and beginner‑friendly guides to bring your creations to life.</p>
+  <button>Browse Patterns 🧵</button>
+</div>
+
+<!-- FEATURED PATTERNS -->
+<div class="section">
+  <h3>Featured Patterns 🩷</h3>
+
+  <div class="pattern-grid">
+    <div class="card">
+      <img src="https://i.imgur.com/8QfQJYB.jpeg" alt="Bunny">
+      <h4>Fluffy Bunny</h4>
+      <p>Soft, cute, and perfect for beginners.</p>
+    </div>
+
+    <div class="card">
+      <img src="https://i.imgur.com/0ZQZQZQ.jpeg" alt="Bag">
+      <h4>Pastel Tote Bag</h4>
+      <p>Aesthetic and practical everyday bag.</p>
+    </div>
+
+    <div class="card">
+      <img src="https://i.imgur.com/3Y3Y3Y3.jpeg" alt="Flower">
+      <h4>Mini Flower Set</h4>
+      <p>Quick, fun, and great for gifts.</p>
+    </div>
+  </div>
+</div>
+
+<!-- NEWSLETTER -->
+<div class="newsletter">
+  <h3>Join the Cozy Club 🌸</h3>
+  <p>Get free patterns, updates, and exclusive discounts.</p>
+  <input type="email" placeholder="Enter your email...">
+  <button>Subscribe 💌</button>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  © 2026 Cozy Crochet Corner — Made with love and yarn 🧶💗
+</div>
+
+<script>
+// Smooth scroll for buttons
+document.querySelector(".hero button").onclick = () => {
+  window.scrollTo({ top: document.body.scrollHeight / 2, behavior: "smooth" });
+};
+</script>
+
+</body>
+</html>
