@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login • Cozy Crochet Corner 🧶</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+:root {
+  --pink: #f7c9d4;
+  --pink-soft: #fbe4ea;
+  --beige: #f5e9d8;
+  --brown: #8b6f5a;
+  --text: #5a4a42;
+  --radius: 18px;
+  --shadow: 0 10px 30px rgba(0,0,0,0.12);
+  --font: "Poppins", system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: linear-gradient(135deg, var(--pink-soft), var(--beige));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.container {
+  background: rgba(255,255,255,0.85);
+  padding: 30px;
+  border-radius: var(--radius);
+  width: min(400px, 90%);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 10px;
+  font-size: 26px;
+}
+
+p {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: var(--radius);
+  border: 1px solid #ddd;
+  margin-top: 12px;
+  font-size: 15px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 16px;
+  background: var(--pink);
+  border: none;
+  border-radius: var(--radius);
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+
+button:hover {
+  background: var(--brown);
+  color: white;
+}
+
+.toggle {
+  margin-top: 14px;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--brown);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2 id="formTitle">Welcome Back 🧶✨</h2>
+  <p id="formSubtitle">Log in to your cozy crochet world</p>
+
+  <input id="email" type="email" placeholder="Email">
+  <input id="password" type="password" placeholder="Password">
+
+  <button id="submitBtn">Login</button>
+
+  <div class="toggle" id="toggleForm">Don't have an account? Sign up 💗</div>
+</div>
+
+<script>
+let mode = "login"; // login or signup
+
+document.getElementById("toggleForm").onclick = () => {
+  if (mode === "login") {
+    mode = "signup";
+    formTitle.textContent = "Create Account 🧵💗";
+    formSubtitle.textContent = "Join the cozy crochet family";
+    submitBtn.textContent = "Sign Up";
+    toggleForm.textContent = "Already have an account? Login ✨";
+  } else {
+    mode = "login";
+    formTitle.textContent = "Welcome Back 🧶✨";
+    formSubtitle.textContent = "Log in to your cozy crochet world";
+    submitBtn.textContent = "Login";
+    toggleForm.textContent = "Don't have an account? Sign up 💗";
+  }
+};
+
+document.getElementById("submitBtn").onclick = () => {
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+
+  if (!email || !password) {
+    alert("Please fill in all fields");
+    return;
+  }
+
+  if (mode === "signup") {
+    localStorage.setItem("crochetUser", JSON.stringify({ email, password }));
+    alert("Account created! You can now log in 💗");
+    mode = "login";
+    formTitle.textContent = "Welcome Back 🧶✨";
+    formSubtitle.textContent = "Log in to your cozy crochet world";
+    submitBtn.textContent = "Login";
+    toggleForm.textContent = "Don't have an account? Sign up 💗";
+  } else {
+    const user = JSON.parse(localStorage.getItem("crochetUser"));
+    if (!user || user.email !== email || user.password !== password) {
+      alert("Incorrect email or password");
+      return;
+    }
+    localStorage.setItem("crochetLoggedIn", "true");
+    window.location.href = "profile.html";
+  }
+};
+</script>
+
+</body>
+</html>

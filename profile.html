@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Your Profile • Cozy Crochet Corner 🧶</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+:root {
+  --pink: #f7c9d4;
+  --beige: #f5e9d8;
+  --brown: #8b6f5a;
+  --radius: 18px;
+  --shadow: 0 10px 30px rgba(0,0,0,0.12);
+  --font: "Poppins", system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: linear-gradient(135deg, var(--pink), var(--beige));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.box {
+  background: rgba(255,255,255,0.85);
+  padding: 30px;
+  border-radius: var(--radius);
+  width: min(400px, 90%);
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--pink);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--brown);
+  color: white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <h2>Hi lovely 🧶💗</h2>
+  <p id="emailDisplay"></p>
+
+  <button id="logoutBtn">Logout</button>
+</div>
+
+<script>
+const user = JSON.parse(localStorage.getItem("crochetUser"));
+if (!localStorage.getItem("crochetLoggedIn")) {
+  window.location.href = "login.html";
+}
+
+emailDisplay.textContent = "Logged in as: " + user.email;
+
+logoutBtn.onclick = () => {
+  localStorage.removeItem("crochetLoggedIn");
+  window.location.href = "index.html";
+};
+</script>
+
+</body>
+</html>

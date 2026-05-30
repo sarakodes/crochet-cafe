@@ -187,7 +187,6 @@ body {
 <body>
 
 <!-- NAVBAR -->
-<div class="navbar">
   <h1>🧶 Cozy Crochet Corner</h1>
   <div>
     <a href="#">Home</a>
@@ -247,6 +246,16 @@ body {
 document.querySelector(".hero button").onclick = () => {
   window.scrollTo({ top: document.body.scrollHeight / 2, behavior: "smooth" });
 };
+
+// Change Login → Profile if logged in
+const navbar = document.querySelector(".navbar div");
+
+if (localStorage.getItem("crochetLoggedIn")) {
+  navbar.innerHTML += `<a href="profile.html">Profile 🧶</a>`;
+} else {
+  navbar.innerHTML += `<a href="login.html">Login 💗</a>`;
+}
+
 </script>
 
 </body>
