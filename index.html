@@ -29,7 +29,7 @@ body {
 }
 
 /* ------------------------------
-   FLOATING HEARTS
+   FLOATING HEARTS BACKGROUND
 ------------------------------ */
 #floatingHearts {
   position: fixed;
@@ -47,17 +47,30 @@ body {
 }
 
 @keyframes floatUp {
-  0% {
-    transform: translateY(110vh) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.7;
-  }
-  100% {
-    transform: translateY(-20vh) rotate(360deg);
-    opacity: 0;
-  }
+  0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.7; }
+  100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+}
+
+/* ------------------------------
+   PINK DOT MOUSE TRAIL
+------------------------------ */
+.dot {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: #f7c9d4;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.8;
+  transform: translate(-50%, -50%);
+  animation: fadeDot 0.8s linear forwards;
+  z-index: 9999;
+}
+
+@keyframes fadeDot {
+  0% { opacity: 0.8; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.2); }
 }
 
 /* ------------------------------
@@ -103,6 +116,7 @@ body {
   padding: 80px 26px;
   text-align: center;
   animation: fadeIn 1.2s ease;
+  position: relative;
 }
 
 .hero h2 {
@@ -146,6 +160,7 @@ body {
   font-size: 26px;
   margin-bottom: 20px;
   text-align: center;
+  position: relative;
 }
 
 .pattern-grid {
@@ -162,6 +177,7 @@ body {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
   animation: fadeInUp 0.8s ease;
+  position: relative;
 }
 
 .card:hover {
@@ -208,24 +224,144 @@ body {
 }
 
 /* ------------------------------
-   PINK DOT MOUSE TRAIL
+   CSS MOCHI MASCOT
 ------------------------------ */
-.dot {
-  position: fixed;
+.mochi {
+  position: relative;
+  width: 120px;
+  height: 110px;
+  pointer-events: none;
+}
+
+/* Body */
+.mochi::before {
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 90px;
+  background: #f5e9d8;
+  border-radius: 60px;
+  bottom: 0;
+  left: 0;
+  box-shadow: inset 0 -6px 0 #e8d8c4;
+}
+
+/* Head */
+.mochi::after {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 90px;
+  background: #f5e9d8;
+  border-radius: 50px;
+  top: -20px;
+  left: 10px;
+  box-shadow: inset 0 -6px 0 #e8d8c4;
+}
+
+/* Ears */
+.mochi .ear {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  background: #f5e9d8;
+  border-radius: 6px;
+  top: -10px;
+}
+.mochi .ear.left { left: 18px; transform: rotate(-20deg); }
+.mochi .ear.right { right: 18px; transform: rotate(20deg); }
+
+/* Eyes */
+.mochi .eye {
+  position: absolute;
   width: 10px;
+  height: 10px;
+  background: #5a4a42;
+  border-radius: 50%;
+  top: 25px;
+}
+.mochi .eye.left { left: 35px; }
+.mochi .eye.right { right: 35px; }
+
+/* Nose */
+.mochi .nose {
+  position: absolute;
+  width: 12px;
+  height: 8px;
+  background: #f2a7b8;
+  border-radius: 50%;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Blush */
+.mochi .blush {
+  position: absolute;
+  width: 18px;
   height: 10px;
   background: #f7c9d4;
   border-radius: 50%;
-  pointer-events: none;
-  opacity: 0.8;
-  transform: translate(-50%, -50%);
-  animation: fadeDot 0.8s linear forwards;
-  z-index: 9999;
+  top: 45px;
+  opacity: 0.6;
+}
+.mochi .blush.left { left: 18px; }
+.mochi .blush.right { right: 18px; }
+
+/* Tail */
+.mochi .tail {
+  position: absolute;
+  width: 40px;
+  height: 20px;
+  background: #f5e9d8;
+  border-radius: 20px;
+  right: -20px;
+  bottom: 10px;
+  transform: rotate(20deg);
 }
 
-@keyframes fadeDot {
-  0% { opacity: 0.8; transform: scale(1); }
-  100% { opacity: 0; transform: scale(0.2); }
+/* ------------------------------
+   MOCHI POSES
+------------------------------ */
+.mochi-sleep .eye {
+  width: 14px;
+  height: 4px;
+  border-radius: 4px;
+  top: 35px;
+}
+
+.mochi-coffee::after {
+  content: "☕";
+  position: absolute;
+  font-size: 28px;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.mochi-peek {
+  transform: scale(0.7);
+}
+
+.mochi-belly {
+  transform: rotate(90deg) scale(0.8);
+}
+
+/* ------------------------------
+   POSITIONING HELPERS
+------------------------------ */
+.mochi-on-card {
+  position: absolute;
+  top: -20px;
+  right: -10px;
+  transform: scale(0.7);
+}
+
+.mochi-above-title {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.8);
 }
 
 </style>
@@ -235,7 +371,6 @@ body {
 
 <!-- FLOATING HEARTS -->
 <div id="floatingHearts"></div>
-
 
 <!-- NAVBAR -->
 <div class="navbar">
@@ -252,6 +387,18 @@ body {
 <!-- HERO -->
 <div class="hero">
   <h2 id="heroText"></h2>
+
+  <div class="mochi mochi-coffee mochi-above-title">
+    <div class="ear left"></div>
+    <div class="ear right"></div>
+    <div class="eye left"></div>
+    <div class="eye right"></div>
+    <div class="nose"></div>
+    <div class="blush left"></div>
+    <div class="blush right"></div>
+    <div class="tail"></div>
+  </div>
+
   <p>Discover adorable crochet patterns, soft pastel designs, and beginner‑friendly guides to bring your creations to life.</p>
   <button id="scrollBtn">Browse Patterns 🧵</button>
 </div>
@@ -261,23 +408,55 @@ body {
   <h3>Featured Patterns 🩷</h3>
 
   <div class="pattern-grid">
+
     <div class="card">
+      <div class="mochi mochi-sleep mochi-on-card">
+        <div class="ear left"></div>
+        <div class="ear right"></div>
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+        <div class="nose"></div>
+        <div class="blush left"></div>
+        <div class="blush right"></div>
+        <div class="tail"></div>
+      </div>
       <img src="https://i.imgur.com/8QfQJYB.jpeg">
       <h4>Fluffy Bunny</h4>
       <p>Soft, cute, and perfect for beginners.</p>
     </div>
 
     <div class="card">
+      <div class="mochi mochi-peek mochi-on-card">
+        <div class="ear left"></div>
+        <div class="ear right"></div>
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+        <div class="nose"></div>
+        <div class="blush left"></div>
+        <div class="blush right"></div>
+        <div class="tail"></div>
+      </div>
       <img src="https://i.imgur.com/0ZQZQZQ.jpeg">
       <h4>Pastel Tote Bag</h4>
       <p>Aesthetic and practical everyday bag.</p>
     </div>
 
     <div class="card">
+      <div class="mochi mochi-belly mochi-on-card">
+        <div class="ear left"></div>
+        <div class="ear right"></div>
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+        <div class="nose"></div>
+        <div class="blush left"></div>
+        <div class="blush right"></div>
+        <div class="tail"></div>
+      </div>
       <img src="https://i.imgur.com/3Y3Y3Y3.jpeg">
       <h4>Mini Flower Set</h4>
       <p>Quick, fun, and great for gifts.</p>
     </div>
+
   </div>
 </div>
 
@@ -299,7 +478,7 @@ if (localStorage.getItem("crochetLoggedIn")) {
 }
 
 /* ------------------------------
-   TYPING EFFECT FOR HERO TEXT
+   TYPING EFFECT
 ------------------------------ */
 const text = "Warm, Cozy, Handmade Magic ✨";
 let i = 0;
@@ -314,7 +493,7 @@ function typeEffect() {
 typeEffect();
 
 /* ------------------------------
-   SMOOTH SCROLL BUTTON
+   SMOOTH SCROLL
 ------------------------------ */
 document.getElementById("scrollBtn").onclick = () => {
   window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
@@ -344,29 +523,15 @@ function createHeart() {
   heart.classList.add("heart");
   heart.textContent = "💗";
 
-  // random horizontal position
   heart.style.left = Math.random() * 100 + "vw";
-
-  // random size
-  const size = 20 + Math.random() * 20;
-  heart.style.fontSize = size + "px";
-
-  // random animation duration
-  const duration = 6 + Math.random() * 4;
-  heart.style.animationDuration = duration + "s";
-
-  // random slight rotation
-  heart.style.transform = `rotate(${Math.random() * 40 - 20}deg)`;
+  heart.style.fontSize = 20 + Math.random() * 20 + "px";
+  heart.style.animationDuration = 6 + Math.random() * 4 + "s";
 
   document.getElementById("floatingHearts").appendChild(heart);
 
-  // remove after animation
-  setTimeout(() => {
-    heart.remove();
-  }, duration * 1000);
+  setTimeout(() => heart.remove(), 10000);
 }
 
-// create a new heart every 400ms
 setInterval(createHeart, 400);
 
 /* ------------------------------
@@ -380,11 +545,8 @@ document.addEventListener("mousemove", (e) => {
 
   document.body.appendChild(dot);
 
-  setTimeout(() => {
-    dot.remove();
-  }, 800);
+  setTimeout(() => dot.remove(), 800);
 });
-
 </script>
 
 </body>
