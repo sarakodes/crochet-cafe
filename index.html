@@ -46,7 +46,7 @@ body {
   gap: 8px;
 }
 
-.navbar a {
+.nav-links a {
   text-decoration: none;
   color: var(--text);
   font-size: 15px;
@@ -54,7 +54,7 @@ body {
   transition: 0.2s;
 }
 
-.navbar a:hover {
+.nav-links a:hover {
   color: var(--brown);
 }
 
@@ -94,7 +94,7 @@ body {
   color: white;
 }
 
-/* FEATURED PATTERNS */
+/* FEATURED */
 .section {
   padding: 40px 26px;
 }
@@ -139,41 +139,6 @@ body {
   opacity: 0.7;
 }
 
-/* NEWSLETTER */
-.newsletter {
-  background: rgba(255,255,255,0.8);
-  padding: 30px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  max-width: 600px;
-  margin: 40px auto;
-  text-align: center;
-}
-
-.newsletter input {
-  width: 80%;
-  padding: 12px;
-  border-radius: var(--radius);
-  border: 1px solid #ddd;
-  margin-top: 10px;
-}
-
-.newsletter button {
-  margin-top: 14px;
-  background: var(--pink);
-  border: none;
-  padding: 12px 20px;
-  border-radius: var(--radius);
-  cursor: pointer;
-  font-size: 15px;
-  box-shadow: var(--shadow);
-}
-
-.newsletter button:hover {
-  background: var(--brown);
-  color: white;
-}
-
 /* FOOTER */
 .footer {
   text-align: center;
@@ -187,12 +152,15 @@ body {
 <body>
 
 <!-- NAVBAR -->
+<div class="navbar">
   <h1>🧶 Cozy Crochet Corner</h1>
-  <div>
-    <a href="#">Home</a>
+
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
     <a href="#">Patterns</a>
     <a href="#">Shop</a>
     <a href="#">Contact</a>
+    <!-- Login/Profile button will be inserted by JS -->
   </div>
 </div>
 
@@ -203,37 +171,29 @@ body {
   <button>Browse Patterns 🧵</button>
 </div>
 
-<!-- FEATURED PATTERNS -->
+<!-- FEATURED -->
 <div class="section">
   <h3>Featured Patterns 🩷</h3>
 
   <div class="pattern-grid">
     <div class="card">
-      <img src="https://i.imgur.com/8QfQJYB.jpeg" alt="Bunny">
+      <img src="https://i.imgur.com/8QfQJYB.jpeg">
       <h4>Fluffy Bunny</h4>
       <p>Soft, cute, and perfect for beginners.</p>
     </div>
 
     <div class="card">
-      <img src="https://i.imgur.com/0ZQZQZQ.jpeg" alt="Bag">
+      <img src="https://i.imgur.com/0ZQZQZQ.jpeg">
       <h4>Pastel Tote Bag</h4>
       <p>Aesthetic and practical everyday bag.</p>
     </div>
 
     <div class="card">
-      <img src="https://i.imgur.com/3Y3Y3Y3.jpeg" alt="Flower">
+      <img src="https://i.imgur.com/3Y3Y3Y3.jpeg">
       <h4>Mini Flower Set</h4>
       <p>Quick, fun, and great for gifts.</p>
     </div>
   </div>
-</div>
-
-<!-- NEWSLETTER -->
-<div class="newsletter">
-  <h3>Join the Cozy Club 🌸</h3>
-  <p>Get free patterns, updates, and exclusive discounts.</p>
-  <input type="email" placeholder="Enter your email...">
-  <button>Subscribe 💌</button>
 </div>
 
 <!-- FOOTER -->
@@ -242,20 +202,14 @@ body {
 </div>
 
 <script>
-// Smooth scroll for buttons
-document.querySelector(".hero button").onclick = () => {
-  window.scrollTo({ top: document.body.scrollHeight / 2, behavior: "smooth" });
-};
-
-// Change Login → Profile if logged in
-const navbar = document.querySelector(".navbar div");
+// Insert Login or Profile button
+const nav = document.getElementById("navLinks");
 
 if (localStorage.getItem("crochetLoggedIn")) {
-  navbar.innerHTML += `<a href="profile.html">Profile 🧶</a>`;
+  nav.innerHTML += `<a href="profile.html">Profile 🧶</a>`;
 } else {
-  navbar.innerHTML += `<a href="login.html">Login 💗</a>`;
+  nav.innerHTML += `<a href="login.html">Login / Signup 💗</a>`;
 }
-
 </script>
 
 </body>
