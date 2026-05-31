@@ -186,9 +186,21 @@ body {
   box-shadow: 0 14px 40px rgba(0,0,0,0.18);
 }
 
-.card img {
+.card img,
+.card .cat-art {
   width: 100%;
   border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.card .cat-art {
+  background: #fff8f1;
+}
+
+.card .cat-art svg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .card h4 {
@@ -269,9 +281,42 @@ body {
     </div>
 
     <div class="card">
-      <img src="https://i.imgur.com/3Y3Y3Y3.jpeg" alt="Mini Flower Set">
-      <h4>Mini Flower Set</h4>
-      <p>Quick, fun, and great for gifts.</p>
+      <div class="cat-art" aria-label="Cute sleepy cat named Mochi">
+        <svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" role="img">
+          <defs>
+            <linearGradient id="bodyGrad" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#f2dfca" />
+              <stop offset="100%" stop-color="#e6d2ba" />
+            </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="320" height="240" rx="24" ry="24" fill="#fff8f1" />
+          <ellipse cx="200" cy="150" rx="92" ry="62" fill="url(#bodyGrad)" />
+          <ellipse cx="130" cy="142" rx="64" ry="52" fill="url(#bodyGrad)" />
+          <ellipse cx="192" cy="180" rx="46" ry="24" fill="#e6d2ba" opacity="0.9" />
+          <path d="M78 100 C70 70 98 44 124 56 C138 34 174 34 188 58 C216 44 244 68 236 98" fill="#f2dfca" stroke="#d8bfa9" stroke-width="5" />
+          <path d="M92 100 C82 74 106 52 126 62" fill="#f2dfca" stroke="#d8bfa9" stroke-width="4" />
+          <path d="M228 100 C220 74 244 52 264 62" fill="#f2dfca" stroke="#d8bfa9" stroke-width="4" />
+          <ellipse cx="140" cy="110" rx="20" ry="16" fill="#ffe6d3" />
+          <ellipse cx="184" cy="110" rx="20" ry="16" fill="#ffe6d3" />
+          <path d="M128 116 C134 122 146 122 152 116" stroke="#c7836e" stroke-width="4" stroke-linecap="round" fill="none" />
+          <path d="M178 116 C184 122 196 122 202 116" stroke="#c7836e" stroke-width="4" stroke-linecap="round" fill="none" />
+          <path d="M132 118 C142 128 158 128 168 118" stroke="#d8bfa9" stroke-width="5" fill="none" opacity="0.4" />
+          <path d="M126 98 C132 92 146 92 152 98" stroke="#776353" stroke-width="6" fill="none" stroke-linecap="round" />
+          <path d="M178 98 C184 92 198 92 204 98" stroke="#776353" stroke-width="6" fill="none" stroke-linecap="round" />
+          <ellipse cx="112" cy="114" rx="10" ry="6" fill="#f7c9d4" opacity="0.8" />
+          <ellipse cx="208" cy="114" rx="10" ry="6" fill="#f7c9d4" opacity="0.8" />
+          <path d="M140 132 Q160 152 180 132" stroke="#d8bfa9" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.9" />
+          <path d="M54 144 C36 154 30 190 58 198" stroke="#d8bfa9" stroke-width="12" fill="none" stroke-linecap="round" opacity="0.9" />
+          <path d="M246 150 C268 158 282 190 248 202" stroke="#d8bfa9" stroke-width="12" fill="none" stroke-linecap="round" opacity="0.9" />
+          <path d="M112 178 C104 192 114 212 130 214" stroke="#d8bfa9" stroke-width="14" fill="none" stroke-linecap="round" opacity="0.9" />
+          <path d="M192 178 C200 192 190 212 174 214" stroke="#d8bfa9" stroke-width="14" fill="none" stroke-linecap="round" opacity="0.9" />
+          <ellipse cx="160" cy="210" rx="70" ry="14" fill="#f4e5d5" opacity="0.9" />
+          <text x="160" y="50" text-anchor="middle" font-family="'Poppins', system-ui, sans-serif" font-size="20" fill="#8b6f5a">Mochi</text>
+          <text x="160" y="72" text-anchor="middle" font-family="'Poppins', system-ui, sans-serif" font-size="12" fill="#a88d78">sleeping softly</text>
+        </svg>
+      </div>
+      <h4>Mochi the Sleepy Cat</h4>
+      <p>A beige chibi kitty napping on a cozy card with dreamy sleepy eyes.</p>
     </div>
 
   </div>
