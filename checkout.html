@@ -47,6 +47,37 @@ body {
   100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
 }
 
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 26px;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar h1 {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 15px;
+  margin-left: 16px;
+  transition: 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--brown);
+}
+
 /* HEADER */
 .checkout-header {
   text-align: center;
@@ -59,7 +90,7 @@ body {
 }
 
 .checkout-box {
-  max-width: 600px;
+  max-width: 650px;
   margin: 0 auto;
   background: rgba(255,255,255,0.95);
   padding: 26px;
@@ -67,15 +98,59 @@ body {
   box-shadow: var(--shadow);
 }
 
+/* CART ITEM */
 .item {
   display: flex;
   justify-content: space-between;
-  padding: 12px 0;
+  align-items: center;
+  padding: 14px 0;
   border-bottom: 1px solid #e8dcd2;
 }
 
+.item-name {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qty-btn {
+  background: var(--pink);
+  border: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  transition: 0.2s;
+}
+
+.qty-btn:hover {
+  background: var(--brown);
+  color: white;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: var(--brown);
+  font-size: 13px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.remove-btn:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
 .total {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
   margin-top: 20px;
   text-align: right;
@@ -103,6 +178,17 @@ body {
 
 <div id="floatingHearts"></div>
 
+<!-- NAVBAR -->
+<div class="navbar">
+  <h1>🧶 Cozy Crochet Corner</h1>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="patterns.html">Patterns</a>
+    <a href="shop.html">Shop</a>
+    <a href="checkout.html">Cart 🧺</a>
+  </div>
+</div>
+
 <div class="checkout-header">
   <h2>Your Cart 🧺💗</h2>
   <p>Review your items before checkout.</p>
@@ -127,7 +213,7 @@ function createHeart() {
 setInterval(createHeart, 400);
 
 /* ------------------------------
-   LOAD CART
+   LOAD CART (with qty + remove)
 ------------------------------ */
 function loadCart() {
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -141,14 +227,24 @@ function loadCart() {
   let html = "";
   let total = 0;
 
-  cart.forEach(item => {
+  cart.forEach((item, index) => {
     const subtotal = item.price * item.qty;
     total += subtotal;
 
     html += `
       <div class="item">
-        <span>${item.name} (x${item.qty})</span>
-        <span>€${subtotal.toFixed(2)}</span>
+        <div>
+          <div class="item-name">${item.name}</div>
+          <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+        </div>
+
+        <div class="qty-controls">
+          <button class="qty-btn" onclick="changeQty(${index}, -1)">−</button>
+          <span>${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+        </div>
+
+        <div>€${subtotal.toFixed(2)}</div>
       </div>
     `;
   });
@@ -161,15 +257,35 @@ function loadCart() {
   box.innerHTML = html;
 }
 
-loadCart();
+/* CHANGE QUANTITY */
+function changeQty(index, amount) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-/* ------------------------------
-   CHECKOUT BUTTON
------------------------------- */
+  cart[index].qty += amount;
+
+  if (cart[index].qty <= 0) {
+    cart.splice(index, 1);
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  loadCart();
+}
+
+/* REMOVE ITEM */
+function removeItem(index) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.splice(index, 1);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  loadCart();
+}
+
+/* CHECKOUT BUTTON */
 function checkout() {
   alert("Redirecting to payment 💗");
-  // Example: window.location.href = "https://your-gumroad-link";
+  // window.location.href = "https://your-payment-link";
 }
+
+loadCart();
 </script>
 
 </body>
