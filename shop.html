@@ -78,6 +78,22 @@ body {
   color: var(--brown);
 }
 
+.remove-btn {
+  background: none;
+  border: none;
+  color: var(--brown);
+  font-size: 13px;
+  margin-left: 10px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.remove-btn:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+
 /* HEADER */
 .page-header {
   text-align: center;
@@ -354,6 +370,58 @@ function confetti(e) {
     setTimeout(() => dot.remove(), 800);
   }
 }
+
+/* ------------------------------
+   LOAD CART (with remove buttons)
+------------------------------ */
+function loadCart() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const box = document.getElementById("cartBox");
+
+  if (cart.length === 0) {
+    box.innerHTML = "<p>Your cart is empty 💗</p>";
+    return;
+  }
+
+  let html = "";
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    const subtotal = item.price * item.qty;
+    total += subtotal;
+
+    html += `
+      <div class="item">
+        <span>${item.name} (x${item.qty})</span>
+        <span>
+          €${subtotal.toFixed(2)}
+          <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+        </span>
+      </div>
+    `;
+  });
+
+  html += `
+    <div class="total">Total: €${total.toFixed(2)}</div>
+    <button class="buy-btn" onclick="checkout()">Buy Now</button>
+  `;
+
+  box.innerHTML = html;
+}
+
+/* ------------------------------
+   REMOVE ITEM FROM CART
+------------------------------ */
+function removeItem(index) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cart.splice(index, 1); // remove the item
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  loadCart(); // refresh the cart display
+}
+
 </script>
 
 </body>
