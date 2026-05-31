@@ -13,11 +13,10 @@
 }
 
 .review-carousel {
-  width: 100%;
-  overflow: hidden;
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
+  width: 340px; /* FIXED VIEWPORT WIDTH = ONE CARD */
+  margin: 20px auto;
+  overflow: hidden; /* hides all other cards */
+  position: relative;
 }
 
 .review-track {
@@ -26,15 +25,15 @@
 }
 
 .review-card {
-  width: 320px; /* FIXED WIDTH */
-  flex-shrink: 0; /* PREVENT SQUISHING */
-  margin: 0 10px;
+  width: 340px; /* EXACT SAME AS CAROUSEL WIDTH */
+  flex-shrink: 0; /* prevents shrinking */
   background: rgba(255,255,255,0.9);
   padding: 22px;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   font-size: 15px;
   line-height: 1.5;
+  box-sizing: border-box;
 }
 
 .review-card h4 {
@@ -450,7 +449,7 @@ function slideReviews() {
     reviewIndex = 0;
   }
 
-  const cardWidth = cards[0].offsetWidth + 20; // width + margin
+  const cardWidth = 340; // EXACT width of one card
   const offset = reviewIndex * -cardWidth;
 
   track.style.transform = `translateX(${offset}px)`;
