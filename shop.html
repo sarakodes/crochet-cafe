@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Shop | Cozy Crochet Corner 🧶</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+:root {
+  --pink: #f7c9d4;
+  --pink-soft: #fbe4ea;
+  --beige: #f5e9d8;
+  --brown: #8b6f5a;
+  --text: #5a4a42;
+  --radius: 18px;
+  --shadow: 0 10px 30px rgba(0,0,0,0.12);
+  --font: "Poppins", system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: linear-gradient(135deg, var(--pink-soft), var(--beige));
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* FLOATING HEARTS */
+#floatingHearts {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.heart {
+  position: absolute;
+  font-size: 28px;
+  opacity: 0.6;
+  animation: floatUp 8s linear infinite;
+  filter: blur(0.3px);
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.7; }
+  100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 26px;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar h1 {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 15px;
+  margin-left: 16px;
+  transition: 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--brown);
+}
+
+/* HEADER */
+.page-header {
+  text-align: center;
+  padding: 50px 26px 20px;
+}
+
+.page-header h2 {
+  font-size: 34px;
+  margin-bottom: 8px;
+}
+
+.page-header p {
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 0.8;
+}
+
+/* FILTERS */
+.filters {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.filter-btn {
+  background: white;
+  border: none;
+  padding: 8px 16px;
+  margin: 4px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: var(--shadow);
+  transition: 0.2s;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  background: var(--pink);
+}
+
+/* SHOP GRID */
+.shop-section {
+  padding: 20px 26px 50px;
+}
+
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+}
+
+.product-card {
+  background: rgba(255,255,255,0.95);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.18);
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+}
+
+.product-card h4 {
+  margin: 4px 0;
+  font-size: 18px;
+}
+
+.product-card p {
+  font-size: 14px;
+  opacity: 0.8;
+  margin-bottom: 10px;
+}
+
+.product-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  font-weight: 700;
+  color: var(--brown);
+  font-size: 16px;
+}
+
+.buy-btn {
+  background: var(--pink);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.buy-btn:hover {
+  background: var(--brown);
+  color: white;
+}
+
+/* CONFETTI DOTS */
+.confetti-dot {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: var(--pink);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.9;
+  z-index: 9999;
+  animation: pop 0.8s ease-out forwards;
+}
+
+@keyframes pop {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: translate(var(--x), var(--y)) scale(0.2); opacity: 0; }
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 20px;
+  opacity: 0.7;
+  font-size: 14px;
+}
+</style>
+</head>
+<body>
+
+<div id="floatingHearts"></div>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <h1>🧶 Cozy Crochet Corner</h1>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="patterns.html">Patterns</a>
+    <a href="shop.html">Shop</a>
+    <a href="checkout.html">Cart 🧺</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<div class="page-header">
+  <h2>Shop All Products 💗</h2>
+  <p>Digital crochet patterns, bundles, and cute resources.</p>
+</div>
+
+<!-- FILTERS -->
+<div class="filters">
+  <button class="filter-btn active" onclick="filterProducts('all')">All</button>
+  <button class="filter-btn" onclick="filterProducts('plush')">Plushies</button>
+  <button class="filter-btn" onclick="filterProducts('bag')">Bags</button>
+  <button class="filter-btn" onclick="filterProducts('clothing')">Clothing</button>
+  <button class="filter-btn" onclick="filterProducts('bundle')">Bundles</button>
+</div>
+
+<!-- SHOP GRID -->
+<div class="shop-section">
+  <div class="shop-grid" id="productGrid">
+
+    <div class="product-card" data-type="bag" onclick="confetti(event)">
+      <img src="https://via.placeholder.com/400x260/f7c9d4/5a4a42?text=Pastel+Tote" alt="">
+      <h4>Pastel Tote Bag Pattern</h4>
+      <p>Cute pastel tote bag.</p>
+      <div class="product-bottom">
+        <span class="price">€4.50</span>
+        <button class="buy-btn" onclick="event.stopPropagation(); addToCart('Pastel Tote Bag Pattern', 4.50)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-type="plush" onclick="confetti(event)">
+      <img src="https://via.placeholder.com/400x260/fbe4ea/5a4a42?text=Bunny+Plush" alt="">
+      <h4>Plush Bunny Pattern</h4>
+      <p>Soft bunny plush.</p>
+      <div class="product-bottom">
+        <span class="price">€5.00</span>
+        <button class="buy-btn" onclick="event.stopPropagation(); addToCart('Plush Bunny Pattern', 5.00)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-type="clothing" onclick="confetti(event)">
+      <img src="https://via.placeholder.com/400x260/f5e9d8/5a4a42?text=Cardigan" alt="">
+      <h4>Cozy Cloud Cardigan</h4>
+      <p>Oversized cardigan.</p>
+      <div class="product-bottom">
+        <span class="price">€7.50</span>
+        <button class="buy-btn" onclick="event.stopPropagation(); addToCart('Cozy Cloud Cardigan', 7.50)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-type="bundle" onclick="confetti(event)">
+      <img src="https://via.placeholder.com/400x260/ffe9f2/5a4a42?text=Bundle" alt="">
+      <h4>Ultimate Pattern Bundle</h4>
+      <p>All patterns in one pack.</p>
+      <div class="product-bottom">
+        <span class="price">€12.00</span>
+        <button class="buy-btn" onclick="event.stopPropagation(); addToCart('Ultimate Pattern Bundle', 12.00)">Add to Cart</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  © 2026 Cozy Crochet Corner — Made with love and yarn 🧶💗
+</div>
+
+<script>
+/* FLOATING HEARTS */
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.textContent = "💗";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = 20 + Math.random() * 20 + "px";
+  heart.style.animationDuration = 6 + Math.random() * 4 + "s";
+  document.getElementById("floatingHearts").appendChild(heart);
+  setTimeout(() => heart.remove(), 10000);
+}
+setInterval(createHeart, 400);
+
+/* CART SYSTEM */
+function addToCart(name, price) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const existing = cart.find(item => item.name === name);
+
+  if (existing) existing.qty++;
+  else cart.push({ name, price, qty: 1 });
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert("Added to cart 💗");
+}
+
+/* FILTERS */
+function filterProducts(type) {
+  document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+  event.target.classList.add("active");
+
+  document.querySelectorAll(".product-card").forEach(card => {
+    if (type === "all" || card.dataset.type === type) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
+}
+
+/* CONFETTI EFFECT */
+function confetti(e) {
+  for (let i = 0; i < 12; i++) {
+    const dot = document.createElement("div");
+    dot.classList.add("confetti-dot");
+
+    const x = (Math.random() - 0.5) * 200;
+    const y = (Math.random() - 0.5) * 200;
+
+    dot.style.left = e.clientX + "px";
+    dot.style.top = e.clientY + "px";
+    dot.style.setProperty("--x", x + "px");
+    dot.style.setProperty("--y", y + "px");
+
+    document.body.appendChild(dot);
+    setTimeout(() => dot.remove(), 800);
+  }
+}
+</script>
+
+</body>
+</html>
