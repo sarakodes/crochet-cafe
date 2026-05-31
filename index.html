@@ -7,7 +7,7 @@
 
 <style>
 
-  .reviews-section {
+.reviews-section {
   padding: 50px 26px;
   text-align: center;
 }
@@ -26,9 +26,9 @@
 }
 
 .review-card {
-  min-width: 300px;
-  max-width: 350px;
-  margin: 0 auto;
+  width: 320px; /* FIXED WIDTH */
+  flex-shrink: 0; /* PREVENT SQUISHING */
+  margin: 0 10px;
   background: rgba(255,255,255,0.9);
   padding: 22px;
   border-radius: var(--radius);
@@ -42,6 +42,7 @@
   opacity: 0.7;
   font-weight: 600;
 }
+
 
 /* ------------------------------
    THEME
@@ -449,8 +450,10 @@ function slideReviews() {
     reviewIndex = 0;
   }
 
-  const offset = reviewIndex * -100;
-  track.style.transform = `translateX(${offset}%)`;
+  const cardWidth = cards[0].offsetWidth + 20; // width + margin
+  const offset = reviewIndex * -cardWidth;
+
+  track.style.transform = `translateX(${offset}px)`;
 }
 
 setInterval(slideReviews, 4000);
